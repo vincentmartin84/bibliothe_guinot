@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Document index
+{% endblock %}
+
+{% block body %}
+	<style>
+		table {
+			width: 65%;
+			border-collapse: collapse;
+			border: 3px solid;
+			margin-left: 18%;
+		}
+		th,
+		td {
+			padding: 20px;
+			border: 1px solid;
+			text-align: center;
+		}
+		h1 {
+			text-align: center;
+		}
+	</style>
+	<h1>Document index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Releasedate</th>
+				<th>Photo</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for document in documents %}
+				<tr>
+					<td>{{ document.id }}</td>
+					<td>{{ document.title }}</td>
+					<td>{{ document.description }}</td>
+					<td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
+					<td>{{ document.photo }}</td>
+					<td>
+						<a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
+						<a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_document_new') }}">Create new</a>
+{% endblock %}
