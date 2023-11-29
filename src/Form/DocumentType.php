@@ -15,19 +15,20 @@ class DocumentType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('releasedate')
-            ->add('photo')
+            ->add('image')
             ->add('support')
             ->add('genre')
             ->add('consultation')
             ->add('author')
-            ->add('available')
-        ;
+            ->add('available');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Document::class,
-        ]);
+            ]
+        );
     }
 }

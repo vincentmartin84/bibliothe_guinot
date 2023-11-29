@@ -40,15 +40,17 @@ class Document
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $releasedate = null;
 
-    #[ORM\Column(length: 500, nullable: true)]
-    private ?string $photo = null;
-
+    
     #[ORM\OneToMany(mappedBy: 'document', targetEntity: Borrow::class)]
     private Collection $borrows;
+
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Images::class)]
+    private Collection $image;
 
     public function __construct()
     {
         $this->borrows = new ArrayCollection();
+        $this->image = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,19 +154,7 @@ class Document
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): static
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
+        /**
      * @return Collection<int, Borrow>
      */
     public function getBorrows(): Collection
@@ -188,6 +178,36 @@ class Document
             // set the owning side to null (unless already changed)
             if ($borrow->getDocument() === $this) {
                 $borrow->setDocument(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Images $image): static
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): static
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getDocument() === $this) {
+                $image->setDocument(null);
             }
         }
 

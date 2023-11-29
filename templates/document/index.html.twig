@@ -41,7 +41,7 @@
 					<td>{{ document.title }}</td>
 					<td>{{ document.description }}</td>
 					<td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
-					<td>{{ document.photo }}</td>
+					<td>{{ document.image }}</td>
 					<td>
 						<a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
 						<a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
