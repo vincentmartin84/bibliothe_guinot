@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Document{% endblock %}
+{% block title %}New Document
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Document</h1>
+	<h1>Create new Document</h1>
 
-    {{ include('document/_form.html.twig') }}
+	{{ form_start(formDocument, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_errors(formDocument) }}
 
-    <a href="{{ path('app_document_index') }}">back to list</a>
+	{{ form_row(formDocument.title) }}
+	{{ form_row(formDocument.author) }}
+	{{ form_row(formDocument.description) }}
+	{{ form_row(formDocument.releasedate) }}
+	{{ form_row(formDocument.consultation) }}
+	{{ form_row(formDocument.available) }}
+	{{ form_row(formDocument.support) }}
+	{{ form_row(formDocument.genre) }}
+	{{ form_row(formDocument.image) }}
+
+	{{ form_end(formDocument) }}
+
+	<a href="{{ path('app_document_index') }}">back to list</a>
 {% endblock %}
