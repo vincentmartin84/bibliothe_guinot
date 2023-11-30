@@ -44,13 +44,13 @@ class Document
     #[ORM\OneToMany(mappedBy: 'document', targetEntity: Borrow::class)]
     private Collection $borrows;
 
-    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Images::class)]
-    private Collection $image;
+    #[ORM\OneToMany(mappedBy: 'document', targetEntity: Images::class, cascade:["persist"], orphanRemoval: true)]
+    private Collection $images;
 
     public function __construct()
     {
         $this->borrows = new ArrayCollection();
-        $this->image = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,8 +194,8 @@ class Document
 
     public function addImage(Images $image): static
     {
-        if (!$this->image->contains($image)) {
-            $this->image->add($image);
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
             $image->setDocument($this);
         }
 
@@ -204,7 +204,7 @@ class Document
 
     public function removeImage(Images $image): static
     {
-        if ($this->image->removeElement($image)) {
+        if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
             if ($image->getDocument() === $this) {
                 $image->setDocument(null);

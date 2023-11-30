@@ -30,7 +30,7 @@ class DocumentType extends AbstractType
             ->add('consultation')
             ->add('available')
             ->add(
-                'image', FileType::class, [
+                'images', FileType::class, [
                 'label' => false,
                 'multiple' => true,
                 'mapped' => false,

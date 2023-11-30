@@ -23,10 +23,19 @@
                 <th>Releasedate</th>
                 <td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
             </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ document.photo }}</td>
-            </tr>
+
+
+					{% for image in document.images %}
+						<img src="{{ asset('/uploads/'~image.name) }}" alt="" width="450" class="text-start">
+
+					{% endfor %}
+
+
+
+
+
+
+
         </tbody>
     </table>
 
