@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/document')]
 class DocumentController extends AbstractController
@@ -24,8 +25,8 @@ class DocumentController extends AbstractController
         );
     }
 
-    #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new', name: 'app_document_new')]
+    public function new(Request $request, EntityManagerInterface $entityManager)
     {
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document);
@@ -52,19 +53,17 @@ class DocumentController extends AbstractController
                 // On va alors stocker (le nomde l'image) dans la base de données
                 $img = new Images();
                 $img->setName($fichier);
-                $article->addImage($img);
+                $document->addImage($img);
             }
 
             $entityManager->persist($document);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_document_index', ['id' => $document->getId()]);
         }
 
-        return $this->renderForm(
-            'document/new.html.twig', [
-            'document' => $document,
-            'form' => $form,
+        return $this->render('document/new.html.twig', [
+            'formDocument' => $form->createView(),
             ]
         );
     }
