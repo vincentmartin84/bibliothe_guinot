@@ -76,4 +76,5 @@ class Genre
     {
         return $this->title ?? '';
     }
+    
 }

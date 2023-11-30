@@ -76,4 +76,5 @@ class Available
     {
         return $this->title ?? '';
     }
+    
 }

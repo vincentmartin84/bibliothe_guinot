@@ -3,9 +3,18 @@
 namespace App\Form;
 
 use App\Entity\Document;
+use App\Entity\Images;
+use App\Entity\Support;
+use App\Entity\Genre;
+use App\Entity\Consultation; 
+use App\Entity\Available;
+
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class DocumentType extends AbstractType
 {
@@ -14,13 +23,22 @@ class DocumentType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('releasedate')
-            ->add('image')
+            ->add('author')
+            ->add('releasedate')            
             ->add('support')
             ->add('genre')
             ->add('consultation')
-            ->add('author')
-            ->add('available');
+            ->add('available')
+            ->add(
+                'image', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                //'class' => Images::class,
+                'required' => false
+                ]
+            ); 
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

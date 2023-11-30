@@ -76,4 +76,5 @@ class Support
     {
         return $this->title ?? '';
     }
+    
 }

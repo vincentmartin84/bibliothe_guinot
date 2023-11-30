@@ -17,9 +17,11 @@ class DocumentController extends AbstractController
     #[Route('/', name: 'app_document_index', methods: ['GET'])]
     public function index(DocumentRepository $documentRepository): Response
     {
-        return $this->render('document/index.html.twig', [
+        return $this->render(
+            'document/index.html.twig', [
             'documents' => $documentRepository->findAll(),
-        ]);
+            ]
+        );
     }
 
     #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
@@ -30,24 +32,51 @@ class DocumentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Gestion des images pour un article
+            // Je récupère les images transmises depuis le formulaire à travers 1 articles et je vais chercher les données(getData)
+            $images = $form->get('images')->getData();
+
+            // On boucle sur les images (lorsque j'ai plusieurs images)
+            foreach ($images as $image) {
+
+                // On génère un nouveau nom de fichier pour eviter que 2 fichiers aient le meme nom
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension(); // guessExtension recupère l'extension du fichier
+
+                // On passe le fichier dans le dossier uploads
+                // Stockage de l'image sur le disque (l'image physique)
+                $image->move(
+                    $this->getParameter('images_directory'), // n'oublie le parametrage au niveau de Services.yaml
+                    $fichier
+                );
+
+                // On va alors stocker (le nomde l'image) dans la base de données
+                $img = new Images();
+                $img->setName($fichier);
+                $article->addImage($img);
+            }
+
             $entityManager->persist($document);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('document/new.html.twig', [
+        return $this->renderForm(
+            'document/new.html.twig', [
             'document' => $document,
             'form' => $form,
-        ]);
+            ]
+        );
     }
 
     #[Route('/{id}', name: 'app_document_show', methods: ['GET'])]
     public function show(Document $document): Response
     {
-        return $this->render('document/show.html.twig', [
+        return $this->render(
+            'document/show.html.twig', [
             'document' => $document,
-        ]);
+            ]
+        );
     }
 
     #[Route('/{id}/edit', name: 'app_document_edit', methods: ['GET', 'POST'])]
@@ -62,10 +91,12 @@ class DocumentController extends AbstractController
             return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('document/edit.html.twig', [
+        return $this->renderForm(
+            'document/edit.html.twig', [
             'document' => $document,
             'form' => $form,
-        ]);
+            ]
+        );
     }
 
     #[Route('/{id}', name: 'app_document_delete', methods: ['POST'])]

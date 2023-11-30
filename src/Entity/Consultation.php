@@ -76,4 +76,5 @@ class Consultation
     {
         return $this->title ?? '';
     }
+    
 }

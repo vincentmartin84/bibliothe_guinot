@@ -90,5 +90,6 @@ class Author
     public function __toString()
     {
         return $this->lastname ?? '';
-            }
+    }
+    
 }
