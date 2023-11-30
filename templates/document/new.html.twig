@@ -6,20 +6,26 @@
 {% block body %}
 	<h1>Create new Document</h1>
 
-	{{ form_start(formDocument, {'attr': {'novalidate': 'novalidate'}}) }}
-	{{ form_errors(formDocument) }}
+	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_errors(form) }}
 
-	{{ form_row(formDocument.title) }}
-	{{ form_row(formDocument.author) }}
-	{{ form_row(formDocument.description) }}
-	{{ form_row(formDocument.releasedate) }}
-	{{ form_row(formDocument.consultation) }}
-	{{ form_row(formDocument.available) }}
-	{{ form_row(formDocument.support) }}
-	{{ form_row(formDocument.genre) }}
-	{{ form_row(formDocument.image) }}
+	{{ form_row(form.title) }}
+	{{ form_row(form.author) }}
+	{{ form_row(form.description) }}
+	{{ form_row(form.releasedate) }}
+	{{ form_row(form.consultation) }}
+	{{ form_row(form.available) }}
+	{{ form_row(form.support) }}
+	{{ form_row(form.genre) }}
+	{{ form_row(form.image) }}
 
-	{{ form_end(formDocument) }}
+
+	<button type="submit" class="btn btn-success">valider
+	</button>
+
+
+	{{ form_end(form) }}
+
 
 	<a href="{{ path('app_document_index') }}">back to list</a>
 {% endblock %}
