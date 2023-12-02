@@ -3,24 +3,12 @@
 {% block title %}Support index{% endblock %}
 
 {% block body %}
-<style>
-		table {
-			width: 65%;
-			border-collapse: collapse;
-			border: 3px solid;
-			margin-left: 18%;
-		}
-		th,
-		td {
-			padding: 20px;
-			border: 1px solid;
-			text-align: center;
-		}
-		h1 {
-			text-align: center;
-		}
-	</style>
+
     <h1>Support index</h1>
+
+    <br> 
+    <a href="{{ path('app_support_new') }}" class="create-new">Create new</a>
+
 
     <table class="table">
         <thead>
@@ -48,5 +36,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_support_new') }}">Create new</a>
-{% endblock %}
+    {% endblock %}

@@ -1,0 +1,40 @@
+table {
+    width: 65%;
+    border-collapse: collapse;
+    border: 3px solid;
+    margin-left: 18%;
+    margin-top: 2%;
+}
+
+th,
+td {
+    padding: 20px;
+    border: 1px solid;
+    text-align: center;
+}
+
+th {
+    background-color: navy;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+.create-new {
+    padding-left: 18%;
+    padding-bottom: 5pt;
+}
+
+
+header {
+    width: 100%;
+    height: 5%;
+}
+
+#div-img {
+    width: 100%;
+    height: 3%;
+}
+
