@@ -155,8 +155,8 @@ class Document
     }
 
         /**
-     * @return Collection<int, Borrow>
-     */
+         * @return Collection<int, Borrow>
+         */
     public function getBorrows(): Collection
     {
         return $this->borrows;
@@ -187,27 +187,27 @@ class Document
     /**
      * @return Collection<int, Images>
      */
-    public function getImage(): Collection
+    public function getImages(): Collection
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function addImage(Images $image): static
+    public function addImages(Images $images): static
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setDocument($this);
+        if (!$this->images->contains($images)) {
+            $this->images[] = $images;
+            $images->setDocument($this);
         }
 
         return $this;
     }
 
-    public function removeImage(Images $image): static
+    public function removeImages(Images $images): static
     {
-        if ($this->images->removeElement($image)) {
+        if ($this->images->removeElement($images)) {
             // set the owning side to null (unless already changed)
-            if ($image->getDocument() === $this) {
-                $image->setDocument(null);
+            if ($images->getDocument() === $this) {
+                $images->setDocument(null);
             }
         }
 
