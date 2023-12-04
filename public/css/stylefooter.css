@@ -8,6 +8,13 @@
     padding-bottom: 3%;
 }
 
-footer {
-    padding-top: 5%;
-}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  footer {
+    margin-top: auto;
+  }

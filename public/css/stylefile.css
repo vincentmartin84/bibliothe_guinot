@@ -43,11 +43,6 @@ header {
 
 #introduction, #title-introduction {
     text-align: center;
-}
-
-.home-container {
     width: 30%;
-    padding-left: 33%;
+    margin-left: 30%;
 }
-
-
