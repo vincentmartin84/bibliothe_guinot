@@ -1,0 +1,13 @@
+.nav-footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: relative;
+    border: 1pt solid;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+footer {
+    padding-top: 5%;
+}
