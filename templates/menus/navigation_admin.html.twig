@@ -3,28 +3,40 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="{{asset('home/index.html.twig')}}"><img class="rounded" alt="Logo Guinot" src="{{ asset('imagesdesign/logo_guinot.png') }}" width="120" height="98"></a>
-				</div>
-			</div>
-			<h3 style="margin:50px; padding-right:50px; text-align:start;">
-				bibliotheque guinot
-			</h3>
-		</div>
-		<a href="{{path('app_home')}}">accueil
-		</a>
-		<a href="{{path('app_author_index')}}">auteurs</a>
-		<a href="{{path('app_available_index')}}">disponibilités
-		</a>
-		<a href="{{path('app_borrow_index')}}">emprunts
-		</a>
-		<a href="{{path('app_consultation_index')}}">consultation
-		</a>
-		<a href="{{path('app_document_index')}}">documents</a>
-		<a href="{{path('app_genre_index')}}">genres</a>
-		<a href="{{path('app_support_index')}}">supports
-		</a>
 
-		
-		
-	</div>
-</nav>
+
+					{% if app.user %}
+
+						<a href="">{{app.user.firstname}}
+							Profil
+						</a>
+						<a href="{{path('app_logout')}}">déconnexion</a>
+
+						{% endif%}
+						<a href="{{path('app_home')}}"><img class="rounded" alt="Logo Guinot" src="{{ asset('imagesdesign/logo_guinot.png') }}" width="120" height="98"></a>
+					</div>
+				</div>
+				<h3 style="margin:50px; padding-right:50px; text-align:start;">
+					bibliotheque guinot
+				</h3>
+			</div>
+			<a href="{{path('app_home')}}">accueil
+			</a>
+			<a href="{{path('app_author_index')}}">auteurs</a>
+			<a href="{{path('app_available_index')}}">disponibilités
+			</a>
+			<a href="{{path('app_borrow_index')}}">emprunts
+			</a>
+			<a href="{{path('app_consultation_index')}}">consultation
+			</a>
+			<a href="{{path('app_document_index')}}">documents</a>
+			<a href="{{path('app_genre_index')}}">genres</a>
+			<a href="{{path('app_support_index')}}">supports
+			</a>
+
+			<a href="{{path('app_register')}}">inscription</a>
+			<a href="{{path('app_login')}}">connexion</a>
+
+
+		</div>
+	</nav>
