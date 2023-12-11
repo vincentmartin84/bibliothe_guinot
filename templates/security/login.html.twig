@@ -22,7 +22,7 @@
 
 
 		{% for flashMessage in app.flashes('danger') %}
-			<div class="alert alert-danger">
+			<div class="alert alert-danger" aria-live="assertive">
 				{{ flashMessage }}
 			</div>
 		{% endfor %}
