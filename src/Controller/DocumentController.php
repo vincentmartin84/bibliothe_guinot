@@ -53,7 +53,7 @@ class DocumentController extends AbstractController
                 // On va alors stocker (le nomde l'image) dans la base de données
                 $img = new Images();
                 $img->setName($fichier);
-                $document->addImage($img);
+                $document->addImages($img);
             }
 
             $entityManager->persist($document);

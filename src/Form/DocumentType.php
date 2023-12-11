@@ -14,6 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 
 class DocumentType extends AbstractType
@@ -24,7 +25,13 @@ class DocumentType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('author')
-            ->add('releasedate')            
+            ->add(
+                'releasedate',  DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+                'attr' => ['min' => '0-01-01'],
+                ]
+            )            
             ->add('support')
             ->add('genre')
             ->add('consultation')
