@@ -1,6 +1,17 @@
 <nav>
 	<div class="container">
-		<a href="{{path('app_home')}}">accueil </a>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="{{asset('home/index.html.twig')}}"><img class="rounded" alt="Logo Guinot" src="{{ asset('imagesdesign/logo_guinot.png') }}" width="120" height="98"></a>
+				</div>
+			</div>
+			<h3 style="margin:50px; padding-right:50px; text-align:start;">
+				bibliotheque guinot
+			</h3>
+		</div>
+		<a href="{{path('app_home')}}">accueil
+		</a>
 		<a href="{{path('app_author_index')}}">auteurs</a>
 		<a href="{{path('app_available_index')}}">disponibilités
 		</a>
