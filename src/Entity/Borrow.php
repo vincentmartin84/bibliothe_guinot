@@ -16,6 +16,7 @@ class Borrow
 
     #[ORM\ManyToOne(inversedBy: 'borrows')]
     private ?User $user = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'borrows')]
     private ?Document $document = null;
