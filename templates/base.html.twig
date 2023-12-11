@@ -6,13 +6,12 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
 		<link rel="stylesheet" href="/css/stylefile.css">
 		<link rel="stylesheet" href="/css/stylemenus.css">
 		<link rel="stylesheet" href="/css/stylefooter.css">
-		
 
 
 		<link
@@ -27,13 +26,15 @@
 		{% endblock %}
 	</head>
 	<body>
+		
 
 
-		{% include("header/header.html.twig") %}
-		{% include("menus/navigation_admin.html.twig") %}
+			{% include("header/header.html.twig") %}
+			{% include("menus/navigation_admin.html.twig") %}
 
-		{% block body %}{% endblock %}
+			{% block body %}{% endblock %}
 
-		{% include("footer/footer.html.twig") %}
+			{% include("footer/footer.html.twig") %}
+	
 	</body>
 </html>
