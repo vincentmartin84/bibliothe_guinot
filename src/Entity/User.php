@@ -26,8 +26,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    
     #[ORM\Column]
+    #[Assert\Length(
+        min: 8,
+        max: 60,
+        minMessage: 'Le mot de passe doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Le mot de passe ne doit pas dépasser {{ limit }} caractères.',
+    )]
+    #[Assert\EqualTo(propertyPath: "confirmpassword", message: "Les mots de passe ne correspondent pas.")]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\EqualTo(propertyPath: "password", message: "Les mots de passe ne correspondent pas.")]
+    private ?string $confirmpassword = null;
+
+
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
@@ -35,9 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $confirmpassword = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;
