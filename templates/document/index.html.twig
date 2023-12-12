@@ -8,42 +8,48 @@
 	<h1>Document</h1>
 
 	<br>
-	<a href="{{ path('app_document_new') }}" class="create-new">Create new</a>
+	{%if app.user %}
+		<a href="{{ path('app_document_new') }}" class="create-new">Create new</a>
+		{%endif%}
 
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Titre</th>
-				<th>Description</th>
-				<th>date de parution</th>
-				<th>date de publication</th>
-
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for document in documents %}
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{ document.id }}</td>
-					<td>{{ document.title }}</td>
-					<td>{{ document.description }}</td>
-					<td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
-					<td>{{ document.publicationdate ? document.publicationdate|date('Y-m-d') : '' }}</td>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>date de parution</th>
+					<th>date de publication</th>
 
-
-					<td>
-						<a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
-						<a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
-					</td>
+					{%if app.user%}
+						<th>actions</th>
+						{%endif%}</tr>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="6">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for document in documents %}
+					<tr>
+						<td>{{ document.id }}</td>
+						<td>{{ document.title }}</td>
+						<td>{{ document.description }}</td>
+						<td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
+						<td>{{ document.publicationdate ? document.publicationdate|date('Y-m-d') : '' }}</td>
 
-{% endblock %}
+						{%if app.user%}
+							<td>
+								<a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
+								<a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
+							</td>
+							{%endif%}
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="6">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</tbody>
+		</table>
+
+	{% endblock %}
