@@ -44,8 +44,16 @@ class DocumentType extends AbstractType
                 //'class' => Images::class,
                 'required' => false
                 ]
-            ); 
-
+            )
+            ->add(
+                'publicationdate', DateType::class, [
+                    'label' => 'Date de publication',
+                    'data' => new \DateTime(), // Valeur par défaut à la date actuelle
+                    'disabled' => true, // Rend le champ non modifiable
+                    'format' => 'dd-MM-yyyy', // Format de la date
+                    ]
+            );
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void

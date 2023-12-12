@@ -47,6 +47,9 @@ class Document
     #[ORM\OneToMany(mappedBy: 'document', targetEntity: Images::class, cascade:["persist"], orphanRemoval: true)]
     private Collection $images;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $publicationdate = null;
+
     public function __construct()
     {
         $this->borrows = new ArrayCollection();
@@ -210,6 +213,18 @@ class Document
                 $images->setDocument(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPublicationdate(): ?\DateTimeInterface
+    {
+        return $this->publicationdate;
+    }
+
+    public function setPublicationdate(\DateTimeInterface $publicationdate): static
+    {
+        $this->publicationdate = $publicationdate;
 
         return $this;
     }
