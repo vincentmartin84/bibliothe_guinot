@@ -16,6 +16,13 @@ class AuthorFixtures extends Fixture
             ['lastname' => 'Sand', 'firstname' => 'George'],
             ['lastname' => 'Genevoix', 'firstname' => 'Maurice'],
             ['lastname' => 'Sagan', 'firstname' => 'Françoise'],
+            ['lastname' => 'Giono', 'firstname' => 'Jean'],
+            ['lastname' => 'pagnol', 'firstname' => 'marcel'],
+            ['lastname' => 'Rousseau', 'firstname' => 'jean-jaques'],
+            ['lastname' => 'Zola', 'firstname' => 'Emile'],
+            ['lastname' => 'De Maupassant', 'firstname' => 'Guy'],
+            ['lastname' => 'Tesson', 'firstname' => 'Sylvain'],
+            ['lastname' => 'Duras', 'firstname' => 'Marguerite'],
         ];
 
         foreach ($authorsData as $authorData) {
