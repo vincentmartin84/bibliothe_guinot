@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	
+
 	<h1>Document</h1>
 
-	<br> 
+	<br>
 	<a href="{{ path('app_document_new') }}" class="create-new">Create new</a>
 
 
@@ -18,7 +18,8 @@
 				<th>Titre</th>
 				<th>Description</th>
 				<th>date de parution</th>
-				
+				<th>date de publication</th>
+
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -29,7 +30,9 @@
 					<td>{{ document.title }}</td>
 					<td>{{ document.description }}</td>
 					<td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
-					
+					<td>{{ document.publicationdate ? document.publicationdate|date('Y-m-d') : '' }}</td>
+
+
 					<td>
 						<a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
 						<a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
@@ -43,4 +46,4 @@
 		</tbody>
 	</table>
 
-	{% endblock %}
+{% endblock %}

@@ -1,47 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Document{% endblock %}
+{% block title %}Document
+{% endblock %}
 
 {% block body %}
-    <h1>Document</h1>
+	<h1>Document</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ document.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ document.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ document.description }}</td>
-            </tr>
-            <tr>
-                <th>Releasedate</th>
-                <td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
-            </tr>
-
-
-					{% for image in document.images %}
-						<img src="{{ asset('/uploads/'~image.name) }}" alt="" width="450" class="text-start">
-
-					{% endfor %}
-
-
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ document.id }}</td>
+			</tr>
+			<tr>
+				<th>Title</th>
+				<td>{{ document.title }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ document.description }}</td>
+			</tr>
+			<tr>
+				<th>Releasedate</th>
+				<td>{{ document.releasedate ? document.releasedate|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>date de publication</th>
+				<td>{{ document.publicationdate ? document.publicationdate|date('Y-m-d') : '' }}</td>
+			</tr>
+		</tbody>    
+	</th>
 
 
+</tr>
 
 
+{% for image in document.images %}
+	<img src="{{ asset('/uploads/'~image.name) }}" alt="" width="450" class="text-start">
 
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_document_index') }}">back to list</a>
-
-    <a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
-
-    {{ include('document/_delete_form.html.twig') }}
-{% endblock %}
+{% endfor %}</tbody></table><a href="{{ path('app_document_index') }}">back to list</a><a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>{{ include('document/_delete_form.html.twig') }}{% endblock %}

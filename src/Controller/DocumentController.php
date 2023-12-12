@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Images;
 use App\Entity\Document;
 use App\Form\DocumentType;
@@ -56,6 +57,7 @@ class DocumentController extends AbstractController
                 $document->addImages($img);
             }
 
+            $document->setPublicationdate(new DateTime());
             $entityManager->persist($document);
             $entityManager->flush();
 
