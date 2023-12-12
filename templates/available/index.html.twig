@@ -1,38 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Available index{% endblock %}
+{% block title %}Available index
+{% endblock %}
 
 {% block body %}
 
-    <h1>Disponibilités</h1>
-    <br> 
-<a href="{{ path('app_available_new') }}" class="create-new">Create new</a>
+	<h1>Disponibilités</h1>
+	<br>
+	{%if app.user%}
+		<a href="{{ path('app_available_new') }}" class="create-new">Create new</a>
+		{%endif%}
 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for available in availables %}
-            <tr>
-                <td>{{ available.id }}</td>
-                <td>{{ available.title }}</td>
-                <td>
-                    <a href="{{ path('app_available_show', {'id': available.id}) }}">show</a>
-                    <a href="{{ path('app_available_edit', {'id': available.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
 
-    {% endblock %}
+					{%if app.user%}
+						<th>actions</th>
+						{%endif%}</tr>
+				</tr>
+			</thead>
+			<tbody>
+				{% for available in availables %}
+					<tr>
+						<td>{{ available.id }}</td>
+						<td>{{ available.title }}</td>
+
+						{%if app.user%}
+							<td>
+								<a href="{{ path('app_available_show', {'id': available.id}) }}">show</a>
+								<a href="{{ path('app_available_edit', {'id': available.id}) }}">edit</a>
+							</td>
+							{%endif%}
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</tbody>
+		</table>
+
+	{% endblock %}

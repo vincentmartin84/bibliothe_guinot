@@ -4,37 +4,45 @@
 {% endblock %}
 
 {% block body %}
-	
+
 	<h1>Genre</h1>
 
-	<br> 
-	<a href="{{ path('app_genre_new') }}" class="create-new">Create new</a>
+	<br>
+	{%if app.user%}
+		<a href="{{ path('app_genre_new') }}" class="create-new">Create new</a>
+		{%endif%}
 
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Titre</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for genre in genres %}
-				<tr>
-					<td>{{ genre.id }}</td>
-					<td>{{ genre.title }}</td>
-					<td>
-						<a href="{{ path('app_genre_show', {'id': genre.id}) }}">show</a>
-						<a href="{{ path('app_genre_edit', {'id': genre.id}) }}">edit</a>
-					</td>
+					{%if app.user%}
+						<th>actions</th>
+						{%endif%}</tr>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="3">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for genre in genres %}
+					<tr>
+						<td>{{ genre.id }}</td>
+						<td>{{ genre.title }}</td>
+
+						{%if app.user%}
+							<td>
+								<a href="{{ path('app_genre_show', {'id': genre.id}) }}">show</a>
+								<a href="{{ path('app_genre_edit', {'id': genre.id}) }}">edit</a>
+							</td>
+							{%endif%}
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</tbody>
+		</table>
 
 	{% endblock %}

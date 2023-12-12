@@ -6,8 +6,9 @@
 {% block body %}
 
 	<h1>Auteurs</h1>
-
+{%if app.user%}
 	<a href="{{ path('app_author_new') }}" class="btn btn-danger">Create new</a>
+	{%endif%}
 	<br>
 
 	<table class="table">
@@ -16,7 +17,10 @@
 				<th>Id</th>
 				<th>nom</th>
 				<th>prénom</th>
-				<th>actions</th>
+
+				{%if app.user%}
+					<th>actions</th>
+					{%endif%}</tr>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,16 +29,20 @@
 					<td>{{ author.id }}</td>
 					<td>{{ author.lastname }}</td>
 					<td>{{ author.firstname }}</td>
-					<td>
-						<a href="{{ path('app_author_show', {'id': author.id}) }}">show</a>
-						<a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="4">no records found</td>
-				</tr>
-			{% endfor %}
+
+					{%if app.user%}
+						<td>
+							<a href="{{ path('app_author_show', {'id': author.id}) }}">show</a>
+							<a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
+						</td>
+						{%endif%}
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
 		</tbody>
 	</table>
 
