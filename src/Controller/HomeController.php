@@ -16,11 +16,11 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(DocumentRepository $documentRepository): Response
     {
-        $document = $documentRepository->findRecentDocument();
+       // $document = $documentRepository->findRecentDocument();
         return $this->render(
             'home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'document' => '$document'
+            'documents'=> $documentRepository->findAll(),
             ]
         );
     }

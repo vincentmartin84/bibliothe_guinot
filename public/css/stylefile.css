@@ -41,14 +41,27 @@ header {
 }
 
 
-#introduction,
+
 #title-introduction {
     text-align: center;
     width: 30%;
     margin-left: 30%;
 }
 
+#introduction {
+    text-align: CENTER;
+    width: 45%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
 
 .container {
     width: 80%;
+}
+
+#title-alaune {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }

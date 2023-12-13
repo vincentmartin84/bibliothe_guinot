@@ -39,10 +39,10 @@ class DocumentRepository extends ServiceEntityRepository
 
     public function findRecentDocument()
     {
-        $dateLimite = new \DateTime('-1 week');
+        $dateLimite = new \DateTime();
 
         return $this->createQueryBuilder('a')
-            ->andWhere('a.publicationdate >= :dateLimite')
+            ->andWhere('a.publicationdate <= :dateLimite')
             ->setParameter('dateLimite', $dateLimite)
             ->orderBy('a.publicationdate', 'DESC')
             ->setMaxResults(5)
@@ -51,3 +51,7 @@ class DocumentRepository extends ServiceEntityRepository
     }
 
 }
+
+
+
+

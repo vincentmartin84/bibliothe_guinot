@@ -15,5 +15,28 @@
 
 		</p>
 
+		<h2 id="title-alaune">A LA UNE
+		</h2>
+
+
+		<div id="newpublication" class="container">
+			<div class="row">
+				{% for document in documents %}
+					<div class="col-md-4 mb-4">
+						<article class="card">
+							{% for image in document.images %}
+								<img src="{{ asset('/uploads/' ~ image.name) }}" alt="" class="card-img-top">
+							{% endfor %}
+							<div class="card-body">
+								<h3 class="card-title">{{ document.title }}</h3>
+								<p class="card-text">{{ document.description }}</p>
+								<a href="{{ path('app_document_show', {'id': document.id}) }}" class="btn btn-danger">Voir le document</a>
+							</div>
+						</article>
+					</div>
+				{% endfor %}
+			</div>
 		</div>
-	{% endblock %}
+
+	</div>
+{% endblock %}
